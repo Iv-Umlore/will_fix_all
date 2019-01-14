@@ -294,6 +294,9 @@ public class MainWindow extends javax.swing.JFrame {
         Password1 = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         Password2 = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -861,7 +864,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         PassH.setText("Пароль");
 
-        CarModelH.setText("Модель машины");
+        CarModelH.setText("Марка машины");
 
         CarNumbH.setText("Номер машины");
 
@@ -884,6 +887,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel2.setText("Подтвердите пароль");
 
+        jLabel3.setText("Все поля не должны  содержать пробелов");
+
+        jLabel4.setText("Пример: Лада, Lada, BMW");
+
+        jLabel5.setText("Пример: н901по");
+
         javax.swing.GroupLayout RegistrationPanelLayout = new javax.swing.GroupLayout(RegistrationPanel);
         RegistrationPanel.setLayout(RegistrationPanelLayout);
         RegistrationPanelLayout.setHorizontalGroup(
@@ -891,27 +900,38 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(RegistrationPanelLayout.createSequentialGroup()
                 .addGap(156, 156, 156)
                 .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                        .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LoginH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PassH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CarNumbH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(SentForRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CarModelH, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(CanselRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(RegistrationPanelLayout.createSequentialGroup()
+                                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(LoginH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(PassH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(CarNumbH, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                    .addComponent(CarModelH, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(RegLogin)
                                     .addComponent(RegCarModel)
                                     .addComponent(RegCarNumb)
                                     .addComponent(Password1)
-                                    .addComponent(Password2))))))
-                .addContainerGap(216, Short.MAX_VALUE))
+                                    .addComponent(Password2)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrationPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(137, 137, 137))
+                    .addGroup(RegistrationPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(SentForRegistration)
+                        .addGap(29, 29, 29)
+                        .addComponent(CanselRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(240, 240, 240))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrationPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(RegistrationStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -920,7 +940,9 @@ public class MainWindow extends javax.swing.JFrame {
         RegistrationPanelLayout.setVerticalGroup(
             RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(2, 2, 2)
                 .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LoginH, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RegLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -935,11 +957,13 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CarModelH, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RegCarModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RegCarModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CarNumbH, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RegCarNumb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RegCarNumb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(44, 44, 44)
                 .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SentForRegistration)
@@ -1127,11 +1151,14 @@ public class MainWindow extends javax.swing.JFrame {
     private void SentForRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SentForRegistrationActionPerformed
         if (Password1.getText().equalsIgnoreCase(Password2.getText())) {
             if ((RegLogin.getText().length() < 80) && (Password1.getText().length() < 80) && (RegCarModel.getText().length() < 80) && (RegCarNumb.getText().length() < 80)) {
-                if ((RegLogin.getText().length() > 0) && (Password1.getText().length() > 0) && (RegCarModel.getText().length() > 0) && (RegCarNumb.getText().length() > 0) ) {                
-                    RegistrationStatus.setText("Отправляю");
-                    boolean result = CI.Registration(RegLogin.getText(), Password1.getText(), RegCarModel.getText(), RegCarNumb.getText());
-                    if (result) RegistrationStatus.setText("Регистрация прошла успешно!");
-                    else RegistrationStatus.setText("Ошибка регистрации. Попробуйте изменить пароль/логин");
+                if ((RegLogin.getText().length() > 0) && (Password1.getText().length() > 0) && (RegCarModel.getText().length() > 0) && (RegCarNumb.getText().length() > 0) ) { 
+                    if ((RegLogin.getText().indexOf(' ') != -1) && (Password1.getText().indexOf(' ') != -1) && (RegCarModel.getText().indexOf(' ') != -1) && (RegCarNumb.getText().indexOf(' ') != -1)) {
+                        RegistrationStatus.setText("Отправляю");
+                        boolean result = CI.Registration(RegLogin.getText(), Password1.getText(), RegCarModel.getText(), RegCarNumb.getText());
+                        if (result) RegistrationStatus.setText("Регистрация прошла успешно!");
+                        else RegistrationStatus.setText("Ошибка регистрации. Попробуйте изменить пароль/логин");
+                    }
+                    else RegistrationStatus.setText("Поля не должны содержать пробелов");
                 }
                 else RegistrationStatus.setText("Пожалуйста, заполните все поля");
             }
@@ -1424,6 +1451,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel Users;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
