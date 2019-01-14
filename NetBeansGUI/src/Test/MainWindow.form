@@ -598,7 +598,16 @@
                               <Component id="Message" pref="509" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="SendMessage" min="-2" pref="134" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="SendMessage" min="-2" pref="134" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="Information" max="32767" attributes="0"/>
+                                      <Component id="TimeInformation" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -612,7 +621,14 @@
                               <Component id="SendMessage" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="285" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane2" min="-2" pref="285" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="Information" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="TimeInformation" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -647,6 +663,16 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SendMessageActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="Information">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&#x412;&#x430;&#x43c; &#x43d;&#x430;&#x437;&#x43d;&#x430;&#x447;&#x435;&#x43d;&#x43e; &#x432;&#x440;&#x435;&#x43c;&#x44f;:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="TimeInformation">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&#x412;&#x440;&#x435;&#x43c;&#x44f; &#x43d;&#x435; &#x43d;&#x430;&#x437;&#x43d;&#x430;&#x447;&#x435;&#x43d;&#x43e;"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -1002,7 +1028,7 @@
                                           <Component id="Password1" max="32767" attributes="0"/>
                                           <Component id="Password2" alignment="0" max="32767" attributes="0"/>
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="Warning" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -1010,8 +1036,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ModelCarExample" min="-2" max="-2" attributes="0"/>
+                                  <Component id="NumbCarExample" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                           </Group>
@@ -1035,7 +1061,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Warning" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="LoginH" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
@@ -1055,13 +1081,13 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="CarModelH" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="RegCarModel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ModelCarExample" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="CarNumbH" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="RegCarNumb" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="NumbCarExample" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -1133,17 +1159,17 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="Password2">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="Warning">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x412;&#x441;&#x435; &#x43f;&#x43e;&#x43b;&#x44f; &#x43d;&#x435; &#x434;&#x43e;&#x43b;&#x436;&#x43d;&#x44b;  &#x441;&#x43e;&#x434;&#x435;&#x440;&#x436;&#x430;&#x442;&#x44c; &#x43f;&#x440;&#x43e;&#x431;&#x435;&#x43b;&#x43e;&#x432;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
+            <Component class="javax.swing.JLabel" name="ModelCarExample">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x438;&#x43c;&#x435;&#x440;: &#x41b;&#x430;&#x434;&#x430;, Lada, BMW"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JLabel" name="NumbCarExample">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x438;&#x43c;&#x435;&#x440;: &#x43d;901&#x43f;&#x43e;"/>
               </Properties>
