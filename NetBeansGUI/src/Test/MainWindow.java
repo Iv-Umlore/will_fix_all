@@ -1103,12 +1103,20 @@ public class MainWindow extends javax.swing.JFrame {
         // send login pass
         // resive User_id + root
         // _root = root;
-        _root = CI.Autorization(LoginWind.getText(), PassWind.getText());
+        answ = CI.Autorization(LoginWind.getText(), PassWind.getText());
+        
+        System.out.println(answ);
+        
+        StringTokenizer stok = new StringTokenizer(answ, " ");
+        _root = Integer.parseInt(stok.nextToken());
         if (_root > 0) {
             LoginWind.setText("");
             PassWind.setText("");
         }
         SetVisionButton(_root);
+        
+        TimeInformation.setText(stok.nextToken("\r?\n"));
+        
         UpdateInfo();
     }//GEN-LAST:event_SendActionPerformed
 
@@ -1187,6 +1195,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void CanselMyCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CanselMyCarActionPerformed
         Message.setText("");
+        TimeInformation.setText(CI.GetTime());
         EmptyDate2.setVisible(true);
         
         if (_root > 1) {            
@@ -1224,17 +1233,23 @@ public class MainWindow extends javax.swing.JFrame {
         
         StringTokenizer stok = new StringTokenizer(answ, " ");
         MyCarModel.setText(stok.nextToken() + " " + stok.nextToken());
-        MyCarStatus.setText(stok.nextToken("\r?\n"));
+        temp = stok.nextToken();
+        temp = temp.substring(0,2) + ":00 " + temp.substring(2,4) + ".01";
+        TimeInformation.setText(temp);
+        MyCarStatus.setText(stok.nextToken("\r?\n")); // Должен быть в будущем " ";
+        
         EmptyDate2.setVisible(true);
         Orders.setVisible(false);        
     }//GEN-LAST:event_OpenOrderActionPerformed
 
     private void ChangeStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeStatusActionPerformed
-        CI.ChangeStatus(NewOrderStatus.getText());
+        CI.ChangeStatus(NewOrderStatus.getText(), TimeInformation.getText().substring(0, 2) + TimeInformation.getText().substring(6, 8) + TimeInformation.getText().substring(9, 11));
+        // Обновить страницу
     }//GEN-LAST:event_ChangeStatusActionPerformed
 
     private void ChangeTimeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeTimeBActionPerformed
-        CI.ChangeTime(EmptyDate.getItemAt(EmptyDate.getSelectedIndex()));
+        CI.ChangeTime(EmptyDate.getItemAt(EmptyDate.getSelectedIndex()));  
+        // Обновить страницу
     }//GEN-LAST:event_ChangeTimeBActionPerformed
 
     private void SetManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetManagerActionPerformed
@@ -1275,7 +1290,7 @@ public class MainWindow extends javax.swing.JFrame {
         // id нужного нам пользователя
         }
         
-        CI.ChangeManager(id);
+        CI.ChangeManager(id, TimeInformation.getText().substring(0, 2) + TimeInformation.getText().substring(6, 8) + TimeInformation.getText().substring(9, 11));
         
     }//GEN-LAST:event_ChangeManagerActionPerformed
 

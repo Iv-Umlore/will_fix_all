@@ -103,7 +103,7 @@ public class ClientSpeaker {
 
     public String GetMyClientsInfo(int id_manager) throws IOException{
 
-        command = "GetMyClientsInfo " + id_manager;/*login*/
+        command = "GetMyClientsInfo " + id_manager;
         _dos.writeUTF(command);
         _dos.flush();
 
@@ -112,9 +112,9 @@ public class ClientSpeaker {
 
     }
 
-    public boolean ChangeStatus(int id_rec, String status) throws IOException {
+    public boolean ChangeStatus(int id_rec, String status, int id_manager, String time) throws IOException {
 
-        command = "ChangeStatus " + id_rec + ' ' + status;
+        command = "ChangeStatus " + id_rec + ' ' + status + ' ' + id_manager + ' ' + time;
         _dos.writeUTF(command);
         _dos.flush();
 
