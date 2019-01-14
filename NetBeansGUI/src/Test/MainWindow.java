@@ -188,7 +188,7 @@ public class MainWindow extends javax.swing.JFrame {
                 EmptyDate.addItem(hour + ":00 " + date + ".01");
         
         StringTokenizer stok = new StringTokenizer(calendar, " ");
-                
+      
         String date;
         String str = "";
         String newS = "";
