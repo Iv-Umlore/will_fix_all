@@ -127,7 +127,7 @@ public class Server implements ServerInterface{
         ResultSet setTime = statement.executeQuery("SELECT " + dm + "TIME" + dm + " FROM " + dm + "Orders" + dm);
         while (setTime.next())
         {
-            time_table += setTime.getString(1) + " ";
+            time_table += setTime.getString(1) + " 1 ";
         }
         answer = time_table;
         return answer;

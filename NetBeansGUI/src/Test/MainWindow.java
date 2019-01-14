@@ -189,7 +189,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         StringTokenizer stok = new StringTokenizer(calendar, " ");
 
-        
+        System.out.println(calendar);
+
         String date;
         String str = "";
         String newS = "";
