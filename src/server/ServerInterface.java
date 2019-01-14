@@ -32,9 +32,9 @@ public interface ServerInterface {
 
     String ChangeManager(int id_rec, String status, int manager_id, String time) throws SQLException;
 
-    String SetManager(int id_user);
+    String SetManager(int id_user) throws SQLException;
 
-    String RemoveManager(int id_user);
+    String RemoveManager(int id_user) throws SQLException;
 
-    String SendAllUsersInfo();
+    String SendAllUsersInfo() throws SQLException;
 }
