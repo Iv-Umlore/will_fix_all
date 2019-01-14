@@ -78,7 +78,7 @@ public class Server implements ServerInterface{
         while(setLogin.next())
         {
             String strdb = setLogin.getString(1);
-            if(strdb.equalsIgnoreCase(Login))
+            if(strdb.equalsIgnoreCase(Login) /*|| setPass.getString(1) != pass*/)
             {
                 flagLogin = true;
             }
@@ -190,32 +190,35 @@ public class Server implements ServerInterface{
                 }
             }
         }
+        set_model.close();
+        set_number.close();
+        set_status.close();
         answer = car_info;
         return answer;
     }
 
-    @Override 
-public boolean ToBookATime(int id_rec, String time) throws SQLException {
-// Time is hhddmm (101201 - 10:00 12 january) 
-// Must return true or false 
+    @Override
+    public boolean ToBookATime(int id_rec, String time) throws SQLException {
+        // Time is hhddmm  (101201 - 10:00 12 january)
+        // Must return true or false
         boolean flag = true;
         Integer managerID = 0;
         final char dm = (char) 34;
         Statement statement = db.createStatement();
         ResultSet setManagerID = statement.executeQuery("SELECT " + dm + "ID_ORDER" + dm + " FROM " + dm + "Users" + dm
-                + " WHERE " + dm + "TYPE" + dm + " = 2");
-        while (setManagerID.next()) {
+                                                            + " WHERE " + dm + "TYPE" + dm + " = 2");
+        while (setManagerID.next())
+        {
             managerID = setManagerID.getInt(1);
         }
-        time += " 1";
         CallableStatement call = db.prepareCall("{call writeorder(?,?,?,?)}");
         call.setInt(1, id_rec);
         call.setString(2, "waiting");
         call.setInt(3, managerID);
         call.setString(4, time);
         call.execute();
-        table += " " + time;
-
+        table += " ";
+        
         return flag;
     }
 
@@ -280,23 +283,108 @@ public boolean ToBookATime(int id_rec, String time) throws SQLException {
     // Manager
 
     @Override
-    public String SendClientsInfoToManager(int id_manager) {
+    public String SendClientsInfoToManager(int id_manager) throws SQLException {
         // Must return orderid login CarModel CarNumber, orderid login CarModel CarNumber
-        answer = "1 username1 Lada e228ye 2 username2 Toyota e007uu 3 username3 Lada e228ye 4 username4 Toyota e007uu 5 username5 Lada e228ye 6 username6 Toyota e007uu";
+        Integer idorder = 0;
+        final char dm = (char) 34;
+        answer = "";
+        String login = "";
+        String model = "";
+        String number = "";
+
+        Statement stateorders = db.createStatement();
+        ResultSet setorders = stateorders.executeQuery("SELECT " + dm + "IDORDER" + dm + " FROM " + dm + "Orders" + dm + " WHERE  " + dm + "MANAGERID" + dm + " = " + id_manager);
+
+        while(setorders.next())
+        {
+            idorder = setorders.getInt(1);
+
+            CallableStatement call_login = db.prepareCall("{call readuserlogin(?)}");
+            call_login.setInt(1, idorder);
+            call_login.execute();
+            ResultSet set_login = call_login.getResultSet();
+
+            CallableStatement call_model = db.prepareCall("{call readusermodel(?)}");
+            call_model.setInt(1, idorder);
+            call_model.execute();
+            ResultSet set_model = call_model.getResultSet();
+
+            CallableStatement call_number = db.prepareCall("{call readusernumber(?)}");
+            call_number.setInt(1, idorder);
+            call_number.execute();
+            ResultSet set_number = call_number.getResultSet();
+
+            while (set_login.next())
+            {
+                while (set_model.next())
+                {
+                    while (set_number.next())
+                    {
+                        login = set_login.getString(1);
+                        model = set_model.getString(1);
+                        number = set_number.getString(1);
+                        answer += idorder.toString() + login  + model + number + ", ";
+                    }
+                }
+            }
+        }
+        setorders.close();
+
+        //answer = "1 username1 Lada e228ye 2 username2 Toyota e007uu 3 username3 Lada e228ye 4 username4 Toyota e007uu 5 username5 Lada e228ye 6 username6 Toyota e007uu";
         return answer;
     }
 
     @Override
-    public String ChangeStatus(int id_rec, String status) {
+    public String ChangeStatus(int id_rec, String status, int manager_id, String time) throws SQLException {
         // Must return true or false
         answer = "true";
+
+        CallableStatement call_delete_status = db.prepareCall("{call deleteorder(?)}");
+        call_delete_status.setInt(1, id_rec);
+        call_delete_status.execute();
+        if(!call_delete_status.execute())
+        {
+            answer = "false";
+        }
+
+        CallableStatement call_write_status = db.prepareCall("{call writeorder(?)}");
+        call_write_status.setInt(1, id_rec);
+        call_write_status.setString(2, status);
+        call_write_status.setInt(3, manager_id);
+        call_write_status.setString(4, time);
+        call_write_status.execute();
+        if(!call_write_status.execute())
+        {
+            answer = "false";
+        }
+
         return answer;
     }
 
     @Override
-    public String ChangeTime( int id_rec, String time ) {
+    public String ChangeTime( int id_rec, String status, int manager_id, String time ) throws SQLException {
         // Must return true or false
         answer = "true";
+
+        CallableStatement call_delete_status = db.prepareCall("{call deleteorder(?)}");
+        call_delete_status.setInt(1, id_rec);
+        call_delete_status.execute();
+        if(!call_delete_status.execute())
+        {
+            answer = "false";
+        }
+
+        CallableStatement call_write_status = db.prepareCall("{call writeorder(?)}");
+        call_write_status.setInt(1, id_rec);
+        call_write_status.setString(2, status);
+        call_write_status.setInt(3, manager_id);
+        call_write_status.setString(4, time);
+        call_write_status.execute();
+        if(!call_write_status.execute())
+        {
+            answer = "false";
+        }
+
         System.out.println(time);
         return answer;
     }
@@ -304,10 +392,30 @@ public boolean ToBookATime(int id_rec, String time) throws SQLException {
     // Admin Interface
 
     @Override
-    public String ChangeManager(int id_rec, int id_manager) {
+    public String ChangeManager(int id_rec, String status, int manager_id, String time) throws SQLException {
         // Must return true or false
-        System.out.println("For order " + id_rec + " this manager " + id_manager + " is main now");
+        System.out.println("For order " + id_rec + " this manager " + manager_id + " is main now");
         answer = "true";
+
+        CallableStatement call_delete_status = db.prepareCall("{call deleteorder(?)}");
+        call_delete_status.setInt(1, id_rec);
+        call_delete_status.execute();
+        if(!call_delete_status.execute())
+        {
+            answer = "false";
+        }
+
+        CallableStatement call_write_status = db.prepareCall("{call writeorder(?)}");
+        call_write_status.setInt(1, id_rec);
+        call_write_status.setString(2, status);
+        call_write_status.setInt(3, manager_id);
+        call_write_status.setString(4, time);
+        call_write_status.execute();
+        if(!call_write_status.execute())
+        {
+            answer = "false";
+        }
+
         return answer;
     }
 

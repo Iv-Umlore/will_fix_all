@@ -150,53 +150,53 @@ public class ClientServerCommunicationTest {
         Assert.assertEquals(answer, "-1 -1 ERROR");
     }
 
-    @Test
+    /*@Test
     public void SuccessChangeStatusTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
         boolean answer = speaker.ChangeStatus( 1, "status");
 
         Assert.assertTrue(answer);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void FalseChangeStatusTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
         boolean answer = speaker.ChangeStatus( -1, "status");
 
         Assert.assertFalse(answer);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void SuccessChangeTimeTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
         boolean answer = speaker.ChangeTime( 1,  "10:00 10.10");
 
         Assert.assertTrue(answer);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void FalseChangeTimeTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
         boolean answer = speaker.ChangeTime( -1, "10:00 10.10");
 
         Assert.assertFalse(answer);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void SuccessChangeManagerTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
         boolean answer = speaker.ChangeManager( 1,  1);
 
         Assert.assertTrue(answer);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void FalseChangeManagerTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
         boolean answer = speaker.ChangeManager( -1, 1);
 
         Assert.assertFalse(answer);
-    }
+    }*/
 
     @Test
     public void SuccessSetManagerTest() throws IOException {

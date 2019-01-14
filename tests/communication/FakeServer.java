@@ -94,7 +94,7 @@ public class FakeServer implements ServerInterface {
     }
 
     @Override
-    public String ChangeStatus(int id_rec, String status) {
+    public String ChangeStatus(int id_rec, String status, int id_manager, String time) {
         if (id_rec == -1 )
             answer = "false";
         else
@@ -104,7 +104,7 @@ public class FakeServer implements ServerInterface {
 
 
     @Override
-    public String ChangeTime(int id_rec, String time) {
+    public String ChangeTime(int id_rec, String status, int id_manager, String time) {
         if (id_rec == -1 || time.equalsIgnoreCase("100000" ) )
             answer = "false";
         else
@@ -115,7 +115,7 @@ public class FakeServer implements ServerInterface {
     // Admin Interface
 
     @Override
-    public String ChangeManager(int id_rec, int id_manager) {
+    public String ChangeManager(int id_rec, String status, int id_manager, String time) {
         if (id_rec == -1 || id_manager == -1 )
             answer = "false";
         else

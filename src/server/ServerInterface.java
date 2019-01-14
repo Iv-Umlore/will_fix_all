@@ -22,15 +22,15 @@ public interface ServerInterface {
     
     // Manager
 
-    String SendClientsInfoToManager(int id_manager);
+    String SendClientsInfoToManager(int id_manager) throws SQLException;
 
-    String ChangeStatus(int id_rec, String status);
+    String ChangeStatus(int id_rec, String status, int manager_id, String time) throws SQLException;
 
-    String ChangeTime( int id_rec, String time);
+    String ChangeTime( int id_rec, String status, int manager_id, String time) throws SQLException;
     
     // AdminInterface
 
-    String ChangeManager(int id_rec, int id_manager);
+    String ChangeManager(int id_rec, String status, int manager_id, String time) throws SQLException;
 
     String SetManager(int id_user);
 

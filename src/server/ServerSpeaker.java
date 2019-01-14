@@ -122,7 +122,10 @@ public class ServerSpeaker extends Thread {
                     case "ChangeStatus": {
                         int id_rec = Integer.parseInt(stok.nextToken());
                         String stat = stok.nextToken();
-                        answer = ServInt.ChangeStatus(id_rec, stat);
+                        int managerid = Integer.parseInt(stok.nextToken());
+                        String time = stok.nextToken();
+
+                        answer = ServInt.ChangeStatus(id_rec, stat, managerid, time);
 
                         _dos.writeUTF(answer);
                         _dos.flush();
@@ -135,10 +138,12 @@ public class ServerSpeaker extends Thread {
                         
                         int id_rec = Integer.parseInt(stok.nextToken());
                         data = stok.nextToken();
-                        
+                        int manager_id = Integer.parseInt(stok.nextToken());
+                        String time = stok.nextToken();
+
                         System.out.println(data + " " + id_rec);
                         
-                        answer = ServInt.ChangeTime(id_rec, data);
+                        answer = ServInt.ChangeTime(id_rec, data, manager_id, time);
 
                         _dos.writeUTF(answer);
                         _dos.flush();
@@ -149,8 +154,11 @@ public class ServerSpeaker extends Thread {
 
                     case "ChangeManager": {
                         int id_rec = Integer.parseInt(stok.nextToken());
+                        String status = stok.nextToken();
                         int id_manager = Integer.parseInt(stok.nextToken());
-                        answer = ServInt.ChangeManager(id_rec, id_manager);
+                        String time = stok.nextToken();
+
+                        answer = ServInt.ChangeManager(id_rec, status,id_manager, time);
 
                         _dos.writeUTF(answer);
                         _dos.flush();
