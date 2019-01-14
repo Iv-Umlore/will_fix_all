@@ -10,6 +10,8 @@ public class Client implements ClientInterface{
     private int _id_rec;         // if it's manager. we must remember his client
     private ClientSpeaker CS;
     
+    String time;
+    
     private String answer;
     
     public Client(String _host, int _port) throws IOException {
@@ -18,6 +20,10 @@ public class Client implements ClientInterface{
         _id_rec = 0;
     }
 
+    public String GetTime(){
+        return time;
+    }
+    
     @Override
     public void RemoveIdRec() {
         _id_rec = 0;
@@ -39,16 +45,19 @@ public class Client implements ClientInterface{
     }
 
     @Override
-    public int Autorization(String Login, String pass) {
+    public String Autorization(String Login, String pass) {
         try {
             answer = CS.Autorization(Login, pass);
+            System.out.println(answer);
             StringTokenizer stok = new StringTokenizer(answer, " ");
             id = Integer.parseInt(stok.nextToken());
             Status = Integer.parseInt(stok.nextToken());
-            return Status;
+            String tmp = stok.nextToken();
+            time = tmp.substring(0,2) + ":00 " + tmp.substring(2,4) + ".01";
+            return Status + " " + time + "\n";
         } catch (IOException ex) {
             System.out.println("Error Client.Autorization()");
-            return 0;
+            return "0 0 0";
         }
     }
 
@@ -76,8 +85,11 @@ public class Client implements ClientInterface{
     @Override
     public String OpenRecord(int id_rec) {
         try {
-            _id_rec = id_rec;
-            return CS.GetRecordInfo(id_rec);
+            if (id_rec != -1) {
+                _id_rec = id_rec;
+                return CS.GetRecordInfo(id_rec);
+            }
+            else return CS.GetRecordInfo(_id_rec);
         } catch (IOException ex) {
             System.out.println("Client.OpenRecord() ERROR");
             return "Connection Error";
@@ -131,7 +143,8 @@ public class Client implements ClientInterface{
     @Override
     public void ChangeStatus(String status) {
         try {
-            CS.ChangeStatus(_id_rec, status);
+            time = time.substring(0, 2) + time.substring(6, 8) + time.substring(9, 11);
+            CS.ChangeStatus(_id_rec, status, id ,time);
         } catch (IOException ex) {
             System.out.println("Client.ChangeStatus() ERROR");
         }
@@ -140,7 +153,7 @@ public class Client implements ClientInterface{
     @Override
     public void ChangeTime(String time) {
         try {
-            CS.ChangeTime(_id_rec, time);
+            CS.ChangeTime(_id_rec, time );
         } catch (IOException ex) {
             System.out.println("Client.ChangeTime() ERROR");
         }

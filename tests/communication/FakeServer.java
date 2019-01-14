@@ -18,15 +18,15 @@ public class FakeServer implements ServerInterface {
 
     @Override
     public String Autorization(String Login, String pass) {
-        if (Login.equals("UserLogin") && pass.equals("UserPassword"))
+        if (Login.equalsIgnoreCase("UserLogin") && pass.equalsIgnoreCase("UserPassword"))
         {
             answer = "1";
         }
         else {
-            if (Login.equals("ManagerLogin") && pass.equals("ManagerPassword"))
+            if (Login.equalsIgnoreCase("ManagerLogin") && pass.equalsIgnoreCase("ManagerPassword"))
                 answer = "2";
             else {
-                if (Login.equals("AdminLogin") && pass.equals("AdminPassword"))
+                if (Login.equalsIgnoreCase("AdminLogin") && pass.equalsIgnoreCase("AdminPassword"))
                     answer = "3";
                 else
                     answer = "0";
@@ -94,7 +94,7 @@ public class FakeServer implements ServerInterface {
     }
 
     @Override
-    public String ChangeStatus(int id_rec, String status, int id_manager, String time) {
+    public String ChangeStatus(int id_rec, String status) {
         if (id_rec == -1 )
             answer = "false";
         else
@@ -104,7 +104,7 @@ public class FakeServer implements ServerInterface {
 
 
     @Override
-    public String ChangeTime(int id_rec, String status, int id_manager, String time) {
+    public String ChangeTime(int id_rec, String time) {
         if (id_rec == -1 || time.equalsIgnoreCase("100000" ) )
             answer = "false";
         else
@@ -115,7 +115,7 @@ public class FakeServer implements ServerInterface {
     // Admin Interface
 
     @Override
-    public String ChangeManager(int id_rec, String status, int id_manager, String time) {
+    public String ChangeManager(int id_rec, int id_manager) {
         if (id_rec == -1 || id_manager == -1 )
             answer = "false";
         else

@@ -3,12 +3,14 @@ package client;
 public interface ClientInterface {
     
     void RemoveIdRec();
+
+    String GetTime();
     
     int GetStatus();
 
     boolean Registration(String Login, String pass, String CarModel, String CarNumb);
 
-    int Autorization(String Login, String pass);
+    String Autorization(String Login, String pass);
 
     String UpdateCalendar();
 
@@ -26,7 +28,7 @@ public interface ClientInterface {
 
     String OpenMyClients();
 
-    void ChangeStatus(String status);
+    void ChangeStatus(String time);
 
     void ChangeTime(String time);
 

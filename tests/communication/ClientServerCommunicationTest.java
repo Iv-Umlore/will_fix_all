@@ -150,53 +150,55 @@ public class ClientServerCommunicationTest {
         Assert.assertEquals(answer, "-1 -1 ERROR");
     }
 
-    /*@Test
+    @Test
     public void SuccessChangeStatusTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
-        boolean answer = speaker.ChangeStatus( 1, "status");
+        boolean answer = speaker.ChangeStatus( 1, "status", 10, "101010");
 
         Assert.assertTrue(answer);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void FalseChangeStatusTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
-        boolean answer = speaker.ChangeStatus( -1, "status");
+        boolean answer = speaker.ChangeStatus( -1, "status",10, "101010");
 
         Assert.assertFalse(answer);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void SuccessChangeTimeTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
-        boolean answer = speaker.ChangeTime( 1,  "10:00 10.10");
+        boolean answer = speaker.ChangeTime( 1, "10:00 00.01" );
+
+        System.out.println(answer);
 
         Assert.assertTrue(answer);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void FalseChangeTimeTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
-        boolean answer = speaker.ChangeTime( -1, "10:00 10.10");
+        boolean answer = speaker.ChangeTime( -1, "10:00 00.00");
 
         Assert.assertFalse(answer);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void SuccessChangeManagerTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
         boolean answer = speaker.ChangeManager( 1,  1);
 
         Assert.assertTrue(answer);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void FalseChangeManagerTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
         boolean answer = speaker.ChangeManager( -1, 1);
 
         Assert.assertFalse(answer);
-    }*/
+    }
 
     @Test
     public void SuccessSetManagerTest() throws IOException {

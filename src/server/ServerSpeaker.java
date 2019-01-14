@@ -121,11 +121,9 @@ public class ServerSpeaker extends Thread {
                     }
                     case "ChangeStatus": {
                         int id_rec = Integer.parseInt(stok.nextToken());
-                        String stat = stok.nextToken();
-                        int managerid = Integer.parseInt(stok.nextToken());
-                        String time = stok.nextToken();
+                        String stat = stok.nextToken("\r?\n");
 
-                        answer = ServInt.ChangeStatus(id_rec, stat, managerid, time);
+                        answer = ServInt.ChangeStatus(id_rec, stat);
 
                         _dos.writeUTF(answer);
                         _dos.flush();
@@ -137,13 +135,10 @@ public class ServerSpeaker extends Thread {
                         System.out.println(stok.countTokens());
                         
                         int id_rec = Integer.parseInt(stok.nextToken());
-                        data = stok.nextToken();
-                        int manager_id = Integer.parseInt(stok.nextToken());
                         String time = stok.nextToken();
 
-                        System.out.println(data + " " + id_rec);
                         
-                        answer = ServInt.ChangeTime(id_rec, data, manager_id, time);
+                        answer = ServInt.ChangeTime(id_rec, time);
 
                         _dos.writeUTF(answer);
                         _dos.flush();
@@ -154,11 +149,9 @@ public class ServerSpeaker extends Thread {
 
                     case "ChangeManager": {
                         int id_rec = Integer.parseInt(stok.nextToken());
-                        String status = stok.nextToken();
                         int id_manager = Integer.parseInt(stok.nextToken());
-                        String time = stok.nextToken();
 
-                        answer = ServInt.ChangeManager(id_rec, status,id_manager, time);
+                        answer = ServInt.ChangeManager(id_rec, id_manager);
 
                         _dos.writeUTF(answer);
                         _dos.flush();
