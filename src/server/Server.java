@@ -6,8 +6,6 @@ public class Server implements ServerInterface{
     private String answer;
     private String Chat;
     
-    private String table;
-
     // Database credentials
     static final String DB_URL = "jdbc:postgresql://dumbo.db.elephantsql.com:5432/evejlbgk";
     static final String USER = "evejlbgk";
@@ -17,7 +15,6 @@ public class Server implements ServerInterface{
 
     public Server(){
         Chat = "0 Hello, Happy New Year!\n1 Hello, Happy New Year too!\n";
-        table = "100101 1 110101 1 120101 0";
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -217,7 +214,6 @@ public class Server implements ServerInterface{
         call.setInt(3, managerID);
         call.setString(4, time);
         call.execute();
-        table += " ";
         
         return flag;
     }
