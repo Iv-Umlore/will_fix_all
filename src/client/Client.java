@@ -85,8 +85,11 @@ public class Client implements ClientInterface{
     @Override
     public String OpenRecord(int id_rec) {
         try {
-            _id_rec = id_rec;
-            return CS.GetRecordInfo(id_rec);
+            if (id_rec != -1) {
+                _id_rec = id_rec;
+                return CS.GetRecordInfo(id_rec);
+            }
+            else return CS.GetRecordInfo(_id_rec);
         } catch (IOException ex) {
             System.out.println("Client.OpenRecord() ERROR");
             return "Connection Error";
@@ -138,7 +141,7 @@ public class Client implements ClientInterface{
     }
 
     @Override
-    public void ChangeStatus(String status, String time) {
+    public void ChangeStatus(String status) {
         try {
             time = time.substring(0, 2) + time.substring(6, 8) + time.substring(9, 11);
             CS.ChangeStatus(_id_rec, status, id ,time);
@@ -150,7 +153,7 @@ public class Client implements ClientInterface{
     @Override
     public void ChangeTime(String time) {
         try {
-            CS.ChangeTime(_id_rec, time);
+            CS.ChangeTime(_id_rec, time );
         } catch (IOException ex) {
             System.out.println("Client.ChangeTime() ERROR");
         }
@@ -159,7 +162,7 @@ public class Client implements ClientInterface{
     // Administrator
 
     @Override
-    public void ChangeManager(int id_manager, String time) {
+    public void ChangeManager(int id_manager) {
         try {
             if (_id_rec == 0)CS.ChangeManager(id, id_manager);
         } catch (IOException ex) {

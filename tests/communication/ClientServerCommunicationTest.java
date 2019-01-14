@@ -169,7 +169,9 @@ public class ClientServerCommunicationTest {
     @Test
     public void SuccessChangeTimeTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
-        boolean answer = speaker.ChangeTime( 1,  "10:00 10.10");
+        boolean answer = speaker.ChangeTime( 1, "10:00 00.01" );
+
+        System.out.println(answer);
 
         Assert.assertTrue(answer);
     }
@@ -177,7 +179,7 @@ public class ClientServerCommunicationTest {
     @Test
     public void FalseChangeTimeTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
-        boolean answer = speaker.ChangeTime( -1, "10:00 10.10");
+        boolean answer = speaker.ChangeTime( -1, "10:00 00.00");
 
         Assert.assertFalse(answer);
     }

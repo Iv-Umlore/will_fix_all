@@ -28,13 +28,13 @@ public interface ClientInterface {
 
     String OpenMyClients();
 
-    void ChangeStatus(String status, String time);
+    void ChangeStatus(String time);
 
     void ChangeTime(String time);
 
     // Administrator
 
-    void ChangeManager(int id_manager , String time);
+    void ChangeManager(int id_manager);
 
     String OpenAllUsers();
 

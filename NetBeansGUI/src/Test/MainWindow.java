@@ -1243,13 +1243,36 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_OpenOrderActionPerformed
 
     private void ChangeStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeStatusActionPerformed
-        CI.ChangeStatus(NewOrderStatus.getText(), TimeInformation.getText().substring(0, 2) + TimeInformation.getText().substring(6, 8) + TimeInformation.getText().substring(9, 11));
-        // Обновить страницу
+        CI.ChangeStatus(NewOrderStatus.getText());
+        
+        answ = CI.OpenRecord(-1);
+                        
+        MyCarWindow.setVisible(true);
+        
+        StringTokenizer stok = new StringTokenizer(answ, " ");
+        MyCarModel.setText(stok.nextToken() + " " + stok.nextToken());
+        temp = stok.nextToken();
+        temp = temp.substring(0,2) + ":00 " + temp.substring(2,4) + ".01";
+        TimeInformation.setText(temp);
+        MyCarStatus.setText(stok.nextToken("\r?\n")); // Должен быть в будущем " ";
+        
+        
     }//GEN-LAST:event_ChangeStatusActionPerformed
 
     private void ChangeTimeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeTimeBActionPerformed
         CI.ChangeTime(EmptyDate.getItemAt(EmptyDate.getSelectedIndex()));  
-        // Обновить страницу
+        
+        answ = CI.OpenRecord(-1);
+                        
+        MyCarWindow.setVisible(true);
+        
+        StringTokenizer stok = new StringTokenizer(answ, " ");
+        MyCarModel.setText(stok.nextToken() + " " + stok.nextToken());
+        temp = stok.nextToken();
+        temp = temp.substring(0,2) + ":00 " + temp.substring(2,4) + ".01";
+        TimeInformation.setText(temp);
+        MyCarStatus.setText(stok.nextToken("\r?\n")); // Должен быть в будущем " ";
+        
     }//GEN-LAST:event_ChangeTimeBActionPerformed
 
     private void SetManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetManagerActionPerformed
@@ -1290,7 +1313,7 @@ public class MainWindow extends javax.swing.JFrame {
         // id нужного нам пользователя
         }
         
-        CI.ChangeManager(id, TimeInformation.getText().substring(0, 2) + TimeInformation.getText().substring(6, 8) + TimeInformation.getText().substring(9, 11));
+        CI.ChangeManager(id);
         
     }//GEN-LAST:event_ChangeManagerActionPerformed
 

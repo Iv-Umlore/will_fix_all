@@ -24,13 +24,13 @@ public interface ServerInterface {
 
     String SendClientsInfoToManager(int id_manager) throws SQLException;
 
-    String ChangeStatus(int id_rec, String status, int manager_id, String time) throws SQLException;
+    String ChangeStatus(int id_rec, String status) throws SQLException;
 
-    String ChangeTime( int id_rec, String status, int manager_id, String time) throws SQLException;
+    String ChangeTime( int id_rec, String time) throws SQLException;
     
     // AdminInterface
 
-    String ChangeManager(int id_rec, String status, int manager_id, String time) throws SQLException;
+    String ChangeManager(int id_rec, int manager_id) throws SQLException;
 
     String SetManager(int id_user) throws SQLException;
 
