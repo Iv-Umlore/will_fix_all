@@ -130,7 +130,7 @@ public class Server implements ServerInterface{
         ResultSet setTime = statement.executeQuery("SELECT " + dm + "TIME" + dm + " FROM " + dm + "Orders" + dm);
         while (setTime.next())
         {
-            time_table += setTime.getString(1) + " 1 ";
+            time_table += setTime.getString(1) + " ";
         }
         answer = time_table;
         return answer;
@@ -420,25 +420,122 @@ public class Server implements ServerInterface{
     }
 
     @Override
-    public String SetManager(int id_user) {
+    public String SetManager(int idorder) throws SQLException {
         // Must return true or false
-        System.out.println("User " + id_user + " is manager now/");
+        System.out.println("User " + idorder + " is manager now/");
         answer = "true";
+
+        CallableStatement call_login = db.prepareCall("{call readuserlogin(?)}");
+        call_login.setInt(1, idorder);
+        call_login.execute();
+        ResultSet set_login = call_login.getResultSet();
+        String login = set_login.getString(1);
+
+        CallableStatement call_pass = db.prepareCall("{call readuserpass(?)}");
+        call_pass.setInt(1, idorder);
+        call_pass.execute();
+        ResultSet set_pass = call_pass.getResultSet();
+        String pass = set_pass.getString(1);
+
+        CallableStatement call_model = db.prepareCall("{call readusermodel(?)}");
+        call_model.setInt(1, idorder);
+        call_model.execute();
+        ResultSet set_model = call_model.getResultSet();
+        String car_model = set_model.getString(1);
+
+        CallableStatement call_number = db.prepareCall("{call readusernumber(?)}");
+        call_number.setInt(1, idorder);
+        call_number.execute();
+        ResultSet set_number = call_model.getResultSet();
+        String car_number = set_number.getString(1);
+
+        CallableStatement call = db.prepareCall("{call updatemanager(?,?,?,?,?,?)}");
+        call.setInt(1, idorder);
+        call.setString(2, login);
+        call.setString(3, pass);
+        call.setString(4, car_model);
+        call.setString(5, car_number);
+        call.setInt(6,2);
+        call.execute();
+
+        if(!(call.execute() || call_login.execute() || call_pass.execute() || call_model.execute() || call_number.execute()))
+        {
+            answer = "false";
+        }
+
+        set_login.close();
+        set_model.close();
+        set_number.close();
+        set_pass.close();
         return answer;
     }
 
     @Override
-    public String RemoveManager(int id_user) {
+    public String RemoveManager(int idorder) throws SQLException {
         // Must return true or false
-        System.out.println("Remove user " + id_user + " status manager.");
+        System.out.println("Remove user " + idorder + " status manager.");
         answer = "true";
+
+        CallableStatement call_login = db.prepareCall("{call readuserlogin(?)}");
+        call_login.setInt(1, idorder);
+        call_login.execute();
+        ResultSet set_login = call_login.getResultSet();
+        String login = set_login.getString(1);
+
+        CallableStatement call_pass = db.prepareCall("{call readuserpass(?)}");
+        call_pass.setInt(1, idorder);
+        call_pass.execute();
+        ResultSet set_pass = call_pass.getResultSet();
+        String pass = set_pass.getString(1);
+
+        CallableStatement call_model = db.prepareCall("{call readusermodel(?)}");
+        call_model.setInt(1, idorder);
+        call_model.execute();
+        ResultSet set_model = call_model.getResultSet();
+        String car_model = set_model.getString(1);
+
+        CallableStatement call_number = db.prepareCall("{call readusernumber(?)}");
+        call_number.setInt(1, idorder);
+        call_number.execute();
+        ResultSet set_number = call_model.getResultSet();
+        String car_number = set_number.getString(1);
+
+        CallableStatement call = db.prepareCall("{call updatemanager(?,?,?,?,?,?)}");
+        call.setInt(1, idorder);
+        call.setString(2, login);
+        call.setString(3, pass);
+        call.setString(4, car_model);
+        call.setString(5, car_number);
+        call.setInt(6,1);
+        call.execute();
+
+        if(!(call.execute() || call_login.execute() || call_pass.execute() || call_model.execute() || call_number.execute()))
+        {
+            answer = "false";
+        }
+
+        set_login.close();
+        set_model.close();
+        set_number.close();
+        set_pass.close();
+
         return answer;
     }
 
     @Override
-    public String SendAllUsersInfo() {
+    public String SendAllUsersInfo() throws SQLException {
         // Must return id_user username root_user id_user username root_user
-        answer = "1 username1 1 2 username2 2 3 username3 1 4 username4 2 5 username5 1";
+        answer = "";
+        final char dm = (char) 34;
+        Statement statement = db.createStatement();
+        ResultSet set = statement.executeQuery("SELECT " + dm + "ID_ORDER" + dm + ", " + dm + "LOGIN" + dm + ", " + dm + "TYPE" + dm + " FROM " + dm + "Users" + dm);
+        while(set.next())
+        {
+            Integer idorder = set.getInt(1);
+            String login = set.getString(2);
+            String type = set.getString(3);
+            answer += idorder.toString() + " " + login + " " + type + " ";
+        }
         return answer;
     }
 
