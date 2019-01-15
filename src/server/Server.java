@@ -293,7 +293,6 @@ public class Server implements ServerInterface{
             answer += mes;
         }
         set.close();
-        System.out.println(answer);
         return answer;
     }
     
@@ -368,7 +367,7 @@ public class Server implements ServerInterface{
             if (answer.length() > 1)
                 answer = answer.substring(0, answer.length()-1);
             //answer = "1 username1 Lada e228ye 2 username2 Toyota e007uu 3 username3 Lada e228ye 4 username4 Toyota e007uu 5 username5 Lada e228ye 6 username6 Toyota e007uu";
-        System.out.println(answer);
+        
         return answer;
         }
 
@@ -406,7 +405,7 @@ public class Server implements ServerInterface{
             call.setString(4, time);
             call.execute();
 
-        System.out.println(answer);
+        
             return answer;
         }
 
@@ -443,7 +442,7 @@ public class Server implements ServerInterface{
             call.setString(4, time);
             call.execute();
 
-            System.out.println(answer);
+            
             return answer;
         }
 
@@ -483,7 +482,6 @@ public class Server implements ServerInterface{
         call.setString(4, time);
         call.execute();
 
-        System.out.println(answer);
         return answer;
     }
     @Override
@@ -620,8 +618,6 @@ public class Server implements ServerInterface{
         set_number.close();
         set_pass.close();
 
-        System.out.println(answer);
-
         return answer;
     }
 
@@ -639,8 +635,6 @@ public class Server implements ServerInterface{
             String type = set.getString(3);
             answer += idorder.toString() + " " + login + " " + type + " ";
         }
-
-        System.out.println(answer);
 
         return answer;
     }

@@ -83,7 +83,6 @@ public class ServerSpeaker extends Thread {
                     case "ToBookATime": {
                         int id_rec = Integer.parseInt(stok.nextToken());
                         String time = stok.nextToken();
-                        System.out.println(time);
                         
                         _dos.writeBoolean(ServInt.ToBookATime(id_rec, time));
                         _dos.flush();
@@ -132,11 +131,8 @@ public class ServerSpeaker extends Thread {
 
                     case "ChangeTime": {
                         
-                        System.out.println(stok.countTokens());
-                        
                         int id_rec = Integer.parseInt(stok.nextToken());
                         String time = stok.nextToken();
-
                         
                         answer = ServInt.ChangeTime(id_rec, time);
 

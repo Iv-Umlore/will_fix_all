@@ -48,7 +48,6 @@ public class Client implements ClientInterface{
     public String Autorization(String Login, String pass) {
         try {
             answer = CS.Autorization(Login, pass);
-            System.out.println(answer);
             StringTokenizer stok = new StringTokenizer(answer, " ");
             id = Integer.parseInt(stok.nextToken());
             Status = Integer.parseInt(stok.nextToken());

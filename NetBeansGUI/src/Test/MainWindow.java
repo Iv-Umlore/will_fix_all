@@ -128,7 +128,6 @@ public class MainWindow extends javax.swing.JFrame {
         answ = CI.OpenMyClients();
         
         answ = answ.replaceAll("  ", " ");
-        System.out.println(answ);
         
         StringTokenizer stok = new StringTokenizer(answ, " ");
         
@@ -162,7 +161,6 @@ public class MainWindow extends javax.swing.JFrame {
             answ = CI.OpenChat();
             
             answ = answ.replaceAll("  ", " ");
-            System.out.println(answ);
             stok = new StringTokenizer(answ, " ");
             
             while (stok.hasMoreTokens()){
@@ -1143,8 +1141,6 @@ public class MainWindow extends javax.swing.JFrame {
         // _root = root;
         buzy = true;
         answ = CI.Autorization(LoginWind.getText(), PassWind.getText());
-        
-        System.out.println(answ);
         
         StringTokenizer stok = new StringTokenizer(answ, " ");
         _root = Integer.parseInt(stok.nextToken());

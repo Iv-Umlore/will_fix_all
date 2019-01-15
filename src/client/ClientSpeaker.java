@@ -74,8 +74,6 @@ public class ClientSpeaker {
         // 10:00 01.01 1
         command = "ToBookATime " + id_rec + ' ' + time.substring(0, 2) + time.substring(6, 8) + time.substring(9, 11);
         
-        System.out.println(command);
-        
         _dos.writeUTF(command);
         _dos.flush();
 
