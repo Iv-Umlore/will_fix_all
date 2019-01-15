@@ -112,9 +112,9 @@ public class ClientSpeaker {
 
     }
 
-    public boolean ChangeStatus(int id_rec, String status, int id_manager, String time) throws IOException {
+    public boolean ChangeStatus(int id_rec, String status) throws IOException {
 
-        command = "ChangeStatus " + id_rec + " " + status + " " + id_manager + " " + time;
+        command = "ChangeStatus " + id_rec  + " "  + status;
         _dos.writeUTF(command);
         _dos.flush();
 

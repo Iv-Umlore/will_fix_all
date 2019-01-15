@@ -110,6 +110,10 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void UpdateOrders(){
         answ = CI.OpenMyClients();
+        
+        answ = answ.replaceAll("  ", " ");
+        System.out.println(answ);
+        
         StringTokenizer stok = new StringTokenizer(answ, " ");
         
         int i = 0;
@@ -125,7 +129,7 @@ public class MainWindow extends javax.swing.JFrame {
             AllCars.setValueAt(stok.nextToken(), i, 3);
             i++;
         }
-        
+        if (Clients.getItemCount() == 0) Clients.addItem("У вас нет заказов");
         i = 0;
     }
     
@@ -1126,17 +1130,12 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_CanselAutorizationActionPerformed
 
     private void MyOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyOrdersActionPerformed
-        Orders.setVisible(true);
-        
-        // Куда-то это деть потом
+        Orders.setVisible(true);        
         TimeTable.setVisible(false);
     }//GEN-LAST:event_MyOrdersActionPerformed
 
     private void AllUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllUsersActionPerformed
-        Users.setVisible(true);
-        
-        CI.OpenAllUsers();
-        // Куда-то это деть потом
+        Users.setVisible(true);        
         TimeTable.setVisible(false);
     }//GEN-LAST:event_AllUsersActionPerformed
 
@@ -1151,9 +1150,12 @@ public class MainWindow extends javax.swing.JFrame {
         
         MyCarWindow.setVisible(true);
         
-        temp = CI.GetMyCar();
-        StringTokenizer stok = new StringTokenizer(temp, " ");
+        answ = CI.GetMyCar();
+        StringTokenizer stok = new StringTokenizer(answ, " ");
         MyCarModel.setText(stok.nextToken() + " " + stok.nextToken());
+        temp = stok.nextToken();
+        temp = temp.substring(0,2) + ":00 " + temp.substring(2,4) + ".01";
+        TimeInformation.setText(temp);
         MyCarStatus.setText(stok.nextToken("\r?\n"));
                 
         TimeTable.setVisible(false);
@@ -1211,8 +1213,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void SendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendMessageActionPerformed
         if (CI.SendMessage(Message.getText())) {
-            answ = CI.OpenChat();        
-            Chat.setText(answ);
+            UpdateChat();
             Message.setText("");
         }
     }//GEN-LAST:event_SendMessageActionPerformed
@@ -1277,30 +1278,30 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void SetManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetManagerActionPerformed
         int id = 0;
-        for (int i = 0;i < 24; i++) {
+        for (int i = 0;i < 10; i++) {
             if (AllUsersTable.getValueAt(i, 1).equals(ChooseClientUser.getItemAt(ChooseClientUser.getSelectedIndex()))) {
-                id = Integer.parseInt((String) AllCars.getValueAt(i,0));
+                id = Integer.parseInt((String) AllUsersTable.getValueAt(i,0));
                 break;
             }
         // id нужного нам пользователя
         }
         
         CI.SetManager(id);
-        
+        UpdateUsers();
     }//GEN-LAST:event_SetManagerActionPerformed
 
     private void DeleteManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteManagerActionPerformed
         int id = 0;
-        for (int i = 0;i < 24; i++) {
+        for (int i = 0;i < 10; i++) {
             if (AllUsersTable.getValueAt(i, 1).equals(ChooseManagerUser.getItemAt(ChooseManagerUser.getSelectedIndex()))) {
-                id = Integer.parseInt((String) AllCars.getValueAt(i,0));
+                id = Integer.parseInt((String) AllUsersTable.getValueAt(i,0));
                 break;
             }
         // id нужного нам пользователя
         }
         
         CI.RemoveManager(id);
-        
+        UpdateUsers();
     }//GEN-LAST:event_DeleteManagerActionPerformed
 
     private void ChangeManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeManagerActionPerformed

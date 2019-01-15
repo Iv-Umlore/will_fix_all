@@ -160,8 +160,10 @@ public class ServerSpeaker extends Thread {
 
                     case "SetManager": {
                         int id_user = Integer.parseInt(stok.nextToken());
-                        answer = ServInt.SetManager(id_user);
-
+                        if (id_user!=1) {
+                            answer = ServInt.SetManager(id_user);
+                        }
+                        else answer = "false";
                         _dos.writeUTF(answer);
                         _dos.flush();
                         break;
@@ -169,8 +171,10 @@ public class ServerSpeaker extends Thread {
 
                     case "RemoveManager": {
                         int id_user = Integer.parseInt(stok.nextToken());
-                        answer = ServInt.RemoveManager(id_user);
-
+                        if (id_user!=1) {
+                            answer = ServInt.RemoveManager(id_user);
+                        }
+                        else answer = "false";
                         _dos.writeUTF(answer);
                         _dos.flush();
                         break;

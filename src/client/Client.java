@@ -53,7 +53,9 @@ public class Client implements ClientInterface{
             id = Integer.parseInt(stok.nextToken());
             Status = Integer.parseInt(stok.nextToken());
             String tmp = stok.nextToken();
-            time = tmp.substring(0,2) + ":00 " + tmp.substring(2,4) + ".01";
+             if (time == "null")
+                time = "Время не назначено";            
+            else time = tmp.substring(0,2) + ":00 " + tmp.substring(2,4) + ".01";
             return Status + " " + time + "\n";
         } catch (IOException ex) {
             System.out.println("Error Client.Autorization()");
@@ -82,9 +84,11 @@ public class Client implements ClientInterface{
         return "Connection error Connection_Error";
     }
 
+    
     @Override
     public String OpenRecord(int id_rec) {
-        try {
+        try {            
+            
             if (id_rec != -1) {
                 _id_rec = id_rec;
                 return CS.GetRecordInfo(id_rec);
@@ -143,8 +147,7 @@ public class Client implements ClientInterface{
     @Override
     public void ChangeStatus(String status) {
         try {
-            time = time.substring(0, 2) + time.substring(6, 8) + time.substring(9, 11);
-            CS.ChangeStatus(_id_rec, status, id ,time);
+            CS.ChangeStatus(_id_rec, status);
         } catch (IOException ex) {
             System.out.println("Client.ChangeStatus() ERROR");
         }
@@ -164,7 +167,8 @@ public class Client implements ClientInterface{
     @Override
     public void ChangeManager(int id_manager) {
         try {
-            if (_id_rec == 0)CS.ChangeManager(id, id_manager);
+            if (_id_rec == 0) System.out.println(CS.ChangeManager(id, id_manager));
+            else System.out.println(CS.ChangeManager(_id_rec, id_manager));
         } catch (IOException ex) {
             System.out.println("Client.ChangeManager() ERROR");
         }
@@ -173,7 +177,7 @@ public class Client implements ClientInterface{
     @Override
     public void SetManager(int id_user) {
         try {
-            CS.SetManager(id_user);
+            System.out.println(CS.SetManager(id_user));
         } catch (IOException ex) {
             System.out.println("Client.SetManager() ERROR");
         }
@@ -182,7 +186,7 @@ public class Client implements ClientInterface{
     @Override
     public void RemoveManager(int id_user) {
         try {
-            CS.SetManager(id_user);
+            System.out.println(CS.RemoveManager(id_user));
         } catch (IOException ex) {
             System.out.println("Client.RemoveManager() ERROR");
         }
