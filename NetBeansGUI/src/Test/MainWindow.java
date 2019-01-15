@@ -25,8 +25,10 @@ public class MainWindow extends javax.swing.JFrame {
     private String temp;
     private String answ;
     
-    boolean flag;
-    boolean IsLogin;
+    private boolean buzy;
+    
+    private boolean flag;
+    private boolean IsLogin;
     /**
      * Creates new form Test
      */
@@ -40,6 +42,7 @@ public class MainWindow extends javax.swing.JFrame {
         }        
         flag = false;
         IsLogin = false;
+        buzy = true;
         _root = 0;
         initComponents();
         MyCar.setVisible(false);
@@ -58,12 +61,16 @@ public class MainWindow extends javax.swing.JFrame {
         
         AllManagers.setVisible(false);
         ChangeManager.setVisible(false);
-                
+        
+        buzy = false;
+        
         calend = new Calendar(this);
         calend.start();
     }
 
-    public void UpdateInfo(){
+    public void UpdateInfo(){        
+        while (buzy);
+        
         UpdateCalendar();
         
         if (_root > 0) UpdateChat();
@@ -72,6 +79,9 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void UpdateUsers() {
+        
+        buzy = true;
+        
         answ = CI.OpenAllUsers();
         
         String temp2 = "";
@@ -106,9 +116,15 @@ public class MainWindow extends javax.swing.JFrame {
         if (ChooseClientUser.getItemCount() == 0) ChooseClientUser.addItem("У нас нет клиентов (");
         if (ChooseManagerUser.getItemCount() == 0) ChooseManagerUser.addItem("У нас нет работников");
         AllManagers.setModel(ChooseManagerUser.getModel());
+        
+        buzy = false;
+        
     }
     
     private void UpdateOrders(){
+        
+        buzy = true;
+        
         answ = CI.OpenMyClients();
         
         answ = answ.replaceAll("  ", " ");
@@ -131,9 +147,15 @@ public class MainWindow extends javax.swing.JFrame {
         }
         if (Clients.getItemCount() == 0) Clients.addItem("У вас нет заказов");
         i = 0;
+        
+        buzy = false;
+        
     }
     
     private void UpdateChat() {
+        
+        buzy = true;
+        
         String chat = "";        
         String answ = ""; 
         StringTokenizer stok;
@@ -163,9 +185,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
             
             Chat.setText(chat);
+            
+            buzy = false;
+            
     }
     
     private void UpdateCalendar() {
+        
+        buzy = true;
         
         String calendar = CI.UpdateCalendar();
         
@@ -222,7 +249,10 @@ public class MainWindow extends javax.swing.JFrame {
             }            
         }
         if (EmptyDate.getItemCount() == 0) EmptyDate.addItem("Свободного времени нет");
-        EmptyDate2.setModel(EmptyDate.getModel());       
+        EmptyDate2.setModel(EmptyDate.getModel());  
+        
+        buzy = false;
+        
     }
         
     /**
@@ -1094,19 +1124,22 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_AutorizationButtonActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        buzy = true;
         SetVisionButton(0);
+        buzy = false;
     }//GEN-LAST:event_ExitActionPerformed
 
     private void ReservedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReservedActionPerformed
-        
+        buzy = true;
         CI.ToBookATime(EmptyDate.getItemAt(EmptyDate.getSelectedIndex()));
-        // Изменить параметр в скором времени
+        buzy = false;
     }//GEN-LAST:event_ReservedActionPerformed
 
     private void SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendActionPerformed
         // send login pass
         // resive User_id + root
         // _root = root;
+        buzy = true;
         answ = CI.Autorization(LoginWind.getText(), PassWind.getText());
         
         System.out.println(answ);
@@ -1120,7 +1153,7 @@ public class MainWindow extends javax.swing.JFrame {
         SetVisionButton(_root);
         
         TimeInformation.setText(stok.nextToken("\r?\n"));
-        
+        buzy = false;
         UpdateInfo();
     }//GEN-LAST:event_SendActionPerformed
 
@@ -1140,6 +1173,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_AllUsersActionPerformed
 
     private void MyCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyCarActionPerformed
+        
+        buzy = true;
+        
         EmptyDate2.setVisible(false);
         if (_root > 1) {            
                 ChangeTimeB.setVisible(false);
@@ -1159,6 +1195,9 @@ public class MainWindow extends javax.swing.JFrame {
         MyCarStatus.setText(stok.nextToken("\r?\n"));
                 
         TimeTable.setVisible(false);
+        
+        buzy = false;
+        
     }//GEN-LAST:event_MyCarActionPerformed
 
     private void CanselOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CanselOrdersActionPerformed
@@ -1177,6 +1216,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_CanselRegistrationActionPerformed
 
     private void SentForRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SentForRegistrationActionPerformed
+        
+        buzy = true;
+        
         if (Password1.getText().equalsIgnoreCase(Password2.getText())) {
             if ((RegLogin.getText().length() < 80) && (Password1.getText().length() < 80) && (RegCarModel.getText().length() < 80) && (RegCarNumb.getText().length() < 80)) {
                 if ((RegLogin.getText().length() > 0) && (Password1.getText().length() > 0) && (RegCarModel.getText().length() > 0) && (RegCarNumb.getText().length() > 0) ) { 
@@ -1193,9 +1235,15 @@ public class MainWindow extends javax.swing.JFrame {
             else RegistrationStatus.setText("Слишком длинные данные(больше 80 симв.)");
         }
         else RegistrationStatus.setText("Пароли не совпадают");
+        
+        buzy = false;
+        
     }//GEN-LAST:event_SentForRegistrationActionPerformed
 
     private void CanselMyCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CanselMyCarActionPerformed
+        
+        buzy = true;
+        
         Message.setText("");
         TimeInformation.setText(CI.GetTime());
         EmptyDate2.setVisible(true);
@@ -1209,16 +1257,28 @@ public class MainWindow extends javax.swing.JFrame {
         }        
         MyCarWindow.setVisible(false);
         TimeTable.setVisible(true);
+        
+        buzy = false;
+        
     }//GEN-LAST:event_CanselMyCarActionPerformed
 
     private void SendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendMessageActionPerformed
+        
+        buzy = true;
+        
         if (CI.SendMessage(Message.getText())) {
             UpdateChat();
             Message.setText("");
         }
+        
+        buzy = true;
+        
     }//GEN-LAST:event_SendMessageActionPerformed
 
     private void OpenOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenOrderActionPerformed
+        
+        buzy = true;
+        
         int id = 0;
         for (int i = 0;i < 10; i++) {
             if (AllCars.getValueAt(i, 1).equals(Clients.getItemAt(Clients.getSelectedIndex()))) {
@@ -1240,10 +1300,16 @@ public class MainWindow extends javax.swing.JFrame {
         MyCarStatus.setText(stok.nextToken("\r?\n")); // Должен быть в будущем " ";
         
         EmptyDate2.setVisible(true);
-        Orders.setVisible(false);        
+        Orders.setVisible(false);
+
+        buzy = false;
+        
     }//GEN-LAST:event_OpenOrderActionPerformed
 
     private void ChangeStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeStatusActionPerformed
+        
+        buzy = true;
+        
         CI.ChangeStatus(NewOrderStatus.getText());
         
         answ = CI.OpenRecord(-1);
@@ -1257,10 +1323,14 @@ public class MainWindow extends javax.swing.JFrame {
         TimeInformation.setText(temp);
         MyCarStatus.setText(stok.nextToken("\r?\n")); // Должен быть в будущем " ";
         
+        buzy = false;
         
     }//GEN-LAST:event_ChangeStatusActionPerformed
 
     private void ChangeTimeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeTimeBActionPerformed
+        
+        buzy = true;
+        
         CI.ChangeTime(EmptyDate.getItemAt(EmptyDate.getSelectedIndex()));  
         
         answ = CI.OpenRecord(-1);
@@ -1274,9 +1344,14 @@ public class MainWindow extends javax.swing.JFrame {
         TimeInformation.setText(temp);
         MyCarStatus.setText(stok.nextToken("\r?\n")); // Должен быть в будущем " ";
         
+        buzy = false;
+        
     }//GEN-LAST:event_ChangeTimeBActionPerformed
 
     private void SetManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetManagerActionPerformed
+        
+        buzy = true;
+        
         int id = 0;
         for (int i = 0;i < 10; i++) {
             if (AllUsersTable.getValueAt(i, 1).equals(ChooseClientUser.getItemAt(ChooseClientUser.getSelectedIndex()))) {
@@ -1287,10 +1362,17 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
         CI.SetManager(id);
+                      
         UpdateUsers();
+        
+        buzy = false;
+        
     }//GEN-LAST:event_SetManagerActionPerformed
 
     private void DeleteManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteManagerActionPerformed
+        
+        buzy = true;
+        
         int id = 0;
         for (int i = 0;i < 10; i++) {
             if (AllUsersTable.getValueAt(i, 1).equals(ChooseManagerUser.getItemAt(ChooseManagerUser.getSelectedIndex()))) {
@@ -1302,9 +1384,15 @@ public class MainWindow extends javax.swing.JFrame {
         
         CI.RemoveManager(id);
         UpdateUsers();
+        
+        buzy = false;
+        
     }//GEN-LAST:event_DeleteManagerActionPerformed
 
     private void ChangeManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeManagerActionPerformed
+        
+        buzy = true;
+        
         int id = 0;
         for (int i = 0;i < 24; i++) {
             if (AllUsersTable.getValueAt(i, 1).equals(ChooseManagerUser.getItemAt(ChooseManagerUser.getSelectedIndex()))) {
@@ -1316,6 +1404,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         CI.ChangeManager(id);
         
+        buzy = false;
+        
     }//GEN-LAST:event_ChangeManagerActionPerformed
 
     private void MessageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MessageKeyPressed
@@ -1324,6 +1414,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_MessageKeyPressed
 
     private void SetVisionButton(int root){
+        
+        buzy = true;
+        
         switch (root){
             case 0: {
                 AutorizationButton.setVisible(true);
@@ -1407,6 +1500,9 @@ public class MainWindow extends javax.swing.JFrame {
                 break;
             }
         }
+        
+        buzy = false;
+        
     }
     
     /**
