@@ -159,9 +159,11 @@ public class MainWindow extends javax.swing.JFrame {
         String chat = "";        
         String answ = ""; 
         StringTokenizer stok;
-        if (IsLogin)
             answ = CI.OpenChat();
-             stok = new StringTokenizer(answ, " ");
+            
+            answ = answ.replaceAll("  ", " ");
+            System.out.println(answ);
+            stok = new StringTokenizer(answ, " ");
             
             while (stok.hasMoreTokens()){
                 switch (stok.nextToken(" ")){
@@ -181,11 +183,11 @@ public class MainWindow extends javax.swing.JFrame {
                 }
                 
                 chat += stok.nextToken("\n");
-                chat+= "\n";
+                chat+= "\n";                  
+                                
             }
             
             Chat.setText(chat);
-            
             buzy = false;
             
     }
@@ -1358,6 +1360,7 @@ public class MainWindow extends javax.swing.JFrame {
                 id = Integer.parseInt((String) AllUsersTable.getValueAt(i,0));
                 break;
             }
+            if (AllUsersTable.getValueAt(i, 0) == null) break;
         // id нужного нам пользователя
         }
         
@@ -1376,9 +1379,10 @@ public class MainWindow extends javax.swing.JFrame {
         int id = 0;
         for (int i = 0;i < 10; i++) {
             if (AllUsersTable.getValueAt(i, 1).equals(ChooseManagerUser.getItemAt(ChooseManagerUser.getSelectedIndex()))) {
-                id = Integer.parseInt((String) AllUsersTable.getValueAt(i,0));
+                id = Integer.parseInt((String) AllUsersTable.getValueAt(i,0));                
                 break;
             }
+            if (AllUsersTable.getValueAt(i, 0) == null) break;
         // id нужного нам пользователя
         }
         
@@ -1395,10 +1399,11 @@ public class MainWindow extends javax.swing.JFrame {
         
         int id = 0;
         for (int i = 0;i < 24; i++) {
-            if (AllUsersTable.getValueAt(i, 1).equals(ChooseManagerUser.getItemAt(ChooseManagerUser.getSelectedIndex()))) {
+            if (AllUsersTable.getValueAt(i, 1).equals(AllManagers.getItemAt(AllManagers.getSelectedIndex()))) {
                 id = Integer.parseInt((String) AllCars.getValueAt(i,0));
                 break;
             }
+            if (AllUsersTable.getValueAt(i, 0) == null) break;
         // id нужного нам пользователя
         }
         

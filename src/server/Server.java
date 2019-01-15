@@ -289,7 +289,7 @@ public class Server implements ServerInterface{
         ResultSet set = statement.executeQuery("SELECT " + dm + "MESSAGE" + dm + " FROM " + dm + "Chat" + dm);
         while(set.next())
         {
-            mes += set.getString(1);
+            mes = set.getString(1);
             answer += mes;
         }
         set.close();
