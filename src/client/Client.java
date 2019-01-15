@@ -48,6 +48,7 @@ public class Client implements ClientInterface{
     public String Autorization(String Login, String pass) {
         try {
             answer = CS.Autorization(Login, pass);
+            System.out.println(answer);
             StringTokenizer stok = new StringTokenizer(answer, " ");
             id = Integer.parseInt(stok.nextToken());
             Status = Integer.parseInt(stok.nextToken());
@@ -86,8 +87,7 @@ public class Client implements ClientInterface{
     
     @Override
     public String OpenRecord(int id_rec) {
-        try {            
-            
+        try {
             if (id_rec != -1) {
                 _id_rec = id_rec;
                 return CS.GetRecordInfo(id_rec);
@@ -146,7 +146,8 @@ public class Client implements ClientInterface{
     @Override
     public void ChangeStatus(String status) {
         try {
-            CS.ChangeStatus(_id_rec, status);
+            time = time.substring(0, 2) + time.substring(6, 8) + time.substring(9, 11);
+            CS.ChangeStatus(_id_rec, status, id ,time);
         } catch (IOException ex) {
             System.out.println("Client.ChangeStatus() ERROR");
         }

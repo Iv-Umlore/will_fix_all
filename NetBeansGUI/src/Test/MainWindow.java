@@ -1141,7 +1141,6 @@ public class MainWindow extends javax.swing.JFrame {
         // _root = root;
         buzy = true;
         answ = CI.Autorization(LoginWind.getText(), PassWind.getText());
-        
         StringTokenizer stok = new StringTokenizer(answ, " ");
         _root = Integer.parseInt(stok.nextToken());
         if (_root > 0) {
@@ -1326,7 +1325,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ChangeStatusActionPerformed
 
     private void ChangeTimeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeTimeBActionPerformed
-        
+      
         buzy = true;
         
         CI.ChangeTime(EmptyDate.getItemAt(EmptyDate.getSelectedIndex()));  

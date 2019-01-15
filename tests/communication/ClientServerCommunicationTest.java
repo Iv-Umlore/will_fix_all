@@ -153,7 +153,7 @@ public class ClientServerCommunicationTest {
     @Test
     public void SuccessChangeStatusTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
-        boolean answer = speaker.ChangeStatus( 1, "status");
+        boolean answer = speaker.ChangeStatus( 1, "status", 10, "101010");
 
         Assert.assertTrue(answer);
     }
@@ -161,7 +161,7 @@ public class ClientServerCommunicationTest {
     @Test
     public void FalseChangeStatusTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
-        boolean answer = speaker.ChangeStatus( -1, "status");
+        boolean answer = speaker.ChangeStatus( -1, "status",10, "101010");
 
         Assert.assertFalse(answer);
     }
