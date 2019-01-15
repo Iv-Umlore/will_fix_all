@@ -147,7 +147,7 @@ public class Client implements ClientInterface{
     public void ChangeStatus(String status) {
         try {
             time = time.substring(0, 2) + time.substring(6, 8) + time.substring(9, 11);
-            CS.ChangeStatus(_id_rec, status, id ,time);
+            CS.ChangeStatus(_id_rec, status);
         } catch (IOException ex) {
             System.out.println("Client.ChangeStatus() ERROR");
         }
