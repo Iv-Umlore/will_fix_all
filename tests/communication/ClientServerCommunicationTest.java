@@ -203,7 +203,7 @@ public class ClientServerCommunicationTest {
     @Test
     public void SuccessSetManagerTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
-        boolean answer = speaker.SetManager( 1);
+        boolean answer = speaker.SetManager( 2);
 
         Assert.assertTrue(answer);
     }
@@ -219,7 +219,7 @@ public class ClientServerCommunicationTest {
     @Test
     public void SuccessRemoveManagerTest() throws IOException {
         ClientSpeaker speaker = new ClientSpeaker(host, port);
-        boolean answer = speaker.RemoveManager( 1);
+        boolean answer = speaker.RemoveManager( 2);
 
         Assert.assertTrue(answer);
     }
