@@ -293,6 +293,7 @@ public class Server implements ServerInterface{
             answer += mes;
         }
         set.close();
+
         return answer;
     }
     

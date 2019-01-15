@@ -159,12 +159,26 @@ public class MainWindow extends javax.swing.JFrame {
         String answ = ""; 
         StringTokenizer stok;
             answ = CI.OpenChat();
-            
             answ = answ.replaceAll("  ", " ");
+            System.out.println(answ);
             stok = new StringTokenizer(answ, " ");
             
             while (stok.hasMoreTokens()){
-                switch (stok.nextToken(" ")){
+                temp = stok.nextToken(" ");
+                System.out.println(temp);
+                switch (temp){
+                    case "\n0": {
+                       chat+= "Вы: ";
+                       break;
+                    }
+                    case "\n1": {
+                       chat+= "Менеджер: "; 
+                       break;
+                    }
+                    case "\n2": {
+                       chat+= "Администратор: "; 
+                       break;
+                    }
                     case "0": {
                        chat+= "Вы: ";
                        break;
@@ -1299,6 +1313,8 @@ public class MainWindow extends javax.swing.JFrame {
         EmptyDate2.setVisible(true);
         Orders.setVisible(false);
 
+        
+        
         buzy = false;
         
     }//GEN-LAST:event_OpenOrderActionPerformed

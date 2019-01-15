@@ -111,7 +111,8 @@ public class Client implements ClientInterface{
     @Override
     public String OpenChat() {
         try {
-            return CS.GetChat(id);
+            if (_id_rec == 0) return CS.GetChat(id);
+            else return CS.GetChat(_id_rec);
         } catch (IOException ex) {
             System.out.println("Client.OpenChat() ERROR");
             return "Connection Error";
